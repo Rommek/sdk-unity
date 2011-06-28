@@ -1,0 +1,15 @@
+#!/usr/bin/perl
+
+# PostprocessBuildPlayer_PlayHaven
+# Verifies PlayHaven has been configured and runs XCode integration
+# Applescript. Only runs for iPhone builds.
+if ($ARGV[1] ne "iPhone"){ exit;}
+
+$installPath = $ARGV[0];
+my $currDir = `pwd`;
+chomp $currDir;
+
+# Run Applescript to perform XCode integration
+`osascript \'Assets/Editor/PlayHaven/XCode/InstallXCode.scpt\' \'$installPath\' \'$currDir\'`;
+
+
