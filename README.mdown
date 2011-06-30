@@ -12,22 +12,22 @@ API Reference
 ### Recording game opens
 In order to better optimize your campaigns, it is necessary for your app to report all game opens. This will allow us to calculate impression rates based on all game opens. You do not have to register any event handlers for this request.
 
->  PlayHaven.OpenRequest request = new PlayHaven.OpenRequest("token","secret");
->  request.Send();
+    PlayHaven.OpenRequest request = new PlayHaven.OpenRequest("token","secret");
+    request.Send();
 
 ### Requesting content for your placements
 You may request content for your app using your API token, secret, as well as a placement_id to identify the placement you are requesting content for. Our Unity integration will automatically pause and unpause Unity for you while content is active. You will need to implement two event handlers to handle successful dismisses or errors.
 
->  PlayHaven.ContentRequest request = new PlayHaven.ContentRequest("token","secret","more_games");
->  request.Send();
+    PlayHaven.ContentRequest request = new PlayHaven.ContentRequest("token","secret","more_games");
+    request.Send();
 
 #### Content view dismissing
 The content has successfully dismissed and control is being returned to your app. This can happen as a result of the user clicking on the close button or clicking on a link that will open outside of the app. The game will have already been unpaused at this point.
 
-> request.OnDismiss += new PlayHaven.DismissHandler(this.HandleDismiss);
-> public void HandleDismiss(){
->    //Your dismiss implementation
-> }
+    request.OnDismiss += new PlayHaven.DismissHandler(this.HandleDismiss);
+    public void HandleDismiss(){
+        //Your dismiss implementation
+    }
 
 #### Content view failing to load
 If for any reason a content unit fails to load, the request will stop and the overlay view (if present) will be removed. The game will have already been unpaused at this point.
