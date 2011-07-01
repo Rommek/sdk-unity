@@ -91,10 +91,10 @@ The PlayHavenNotifierView script automatically retrieves placement metadata and 
 ### Configuration
 The PlayHavenNotifierView script exposes the following editable properties when selected in the editor:
 
-	* _Token_: Your publisher token
-	* _Secret_: Your publisher secret
-	* _Placement_: A placement id.
-	* _XPos_, _YPos_: Screen position to display the notifier badge.
+* _Token_: Your publisher token
+* _Secret_: Your publisher secret
+* _Placement_: A placement id.
+* _XPos_, _YPos_: Screen position to display the notifier badge.
 
 **NOTE**: The only valid placement id is "more_games", using other values will cause an error.
 
