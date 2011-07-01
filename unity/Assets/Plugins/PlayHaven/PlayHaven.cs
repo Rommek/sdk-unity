@@ -4,6 +4,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using LitJson;
 
+
 public class PlayHaven : MonoBehaviour {
 	protected static Hashtable sRequests;
 	protected static PlayHavenManager sManager;
@@ -42,6 +43,9 @@ public class PlayHaven : MonoBehaviour {
 			
 			sRequests.Add(GetHashCode(), this);
 		}
+		
+		[DllImport("__Internal")]
+		private static extern void _PlayHavenOpenRequest(int hash, string token, string secret);
 
 		public void Send(){
 			Debug.Log("PlayHaven: Sending open request?");
@@ -53,6 +57,8 @@ public class PlayHaven : MonoBehaviour {
 				result["data"] = new Hashtable();
 				string jsonResult = JsonMapper.ToJson(result);
 				sManager.HandleNativeEvent(jsonResult);
+			} else {
+				_PlayHavenOpenRequest(GetHashCode(), mToken, mSecret);
 			}
 		}
 		
@@ -84,6 +90,9 @@ public class PlayHaven : MonoBehaviour {
 			sRequests.Add(GetHashCode(), this);
 		}
 		
+		[DllImport("__Internal")]
+		private static extern void _PlayHavenMetadataRequest(int hash, string token, string secret, string placement);
+		
 		public void Send(){
 			Debug.Log("PlayHaven: Sending metadata request?");
 			if (Application.isEditor){
@@ -93,11 +102,13 @@ public class PlayHaven : MonoBehaviour {
 				
 				Hashtable dataTable = new Hashtable();
 				dataTable["type"] = "badge";
-				dataTable["value"] = "33";
+				dataTable["value"] = "1";
 				result["data"] = dataTable;
 				
 				string jsonResult = JsonMapper.ToJson(result);
 				sManager.HandleNativeEvent(jsonResult);
+			} else {
+				_PlayHavenMetadataRequest(GetHashCode(), mToken, mSecret, mPlacement);
 			}
 		}
 		
@@ -130,6 +141,8 @@ public class PlayHaven : MonoBehaviour {
 			sRequests.Add(GetHashCode(), this);	
 		}
 		
+		[DllImport("__Internal")]
+		private static extern void _PlayHavenContentRequest(int hash, string token, string secret, string placement);
 		public void Send(){
 			Debug.Log("PlayHaven: Sending content request?");
 			if (Application.isEditor){
@@ -139,6 +152,8 @@ public class PlayHaven : MonoBehaviour {
 				result["data"] = new Hashtable();
 				string jsonResult = JsonMapper.ToJson(result);
 				sManager.HandleNativeEvent(jsonResult);
+			} else {
+				_PlayHavenContentRequest(GetHashCode(), mToken, mSecret, mPlacement);
 			}
 		}
 		

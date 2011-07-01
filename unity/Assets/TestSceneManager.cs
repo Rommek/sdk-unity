@@ -5,7 +5,7 @@ public class TestSceneManager : MonoBehaviour {
 	public PlayHavenNotifierBadge mBadge;
 	
 	void OnGUI(){
-		float yPos = 320.0f;
+		float yPos = 20.0f;
 		float xPos = 20.0f;
 		float width = 280;
 		

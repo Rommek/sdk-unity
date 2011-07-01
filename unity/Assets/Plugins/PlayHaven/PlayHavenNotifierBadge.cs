@@ -34,6 +34,7 @@ public class PlayHavenNotifierBadge : MonoBehaviour {
 			try{
 				badgeType = (string)mResponseData["type"];
 			} catch (KeyNotFoundException e){
+				Debug.Log(e);
 				badgeType = null;
 			}
 			
@@ -41,14 +42,15 @@ public class PlayHavenNotifierBadge : MonoBehaviour {
 				try{
 					badgeValue = (string)mResponseData["value"];
 				} catch (KeyNotFoundException e){
+					Debug.Log(e);
 					badgeValue = null;
 				}
 				
 				if (badgeValue != null){
-					float width = mGUIStyle.CalcSize(new GUIContent(badgeValue)).x;
-					if (width < 35) width = 35.0f;
+					float lWidth = mGUIStyle.CalcSize(new GUIContent(badgeValue)).x + 8.0f;
+					if (lWidth < 35.0f) lWidth = 35.0f;
 					GUI.depth = 1;
-					GUI.Label(new Rect (xPos,yPos,width, 35), badgeValue, mGUIStyle);
+					GUI.Label(new Rect (xPos,yPos,lWidth, 35), badgeValue, mGUIStyle);
 				}
 			}
 		}
