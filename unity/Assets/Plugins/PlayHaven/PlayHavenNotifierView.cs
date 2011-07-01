@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using LitJson;
 
-public class PlayHavenNotifierBadge : MonoBehaviour {
+public class PlayHavenNotifierView : MonoBehaviour {
 	public string Token = "token";
 	public string Secret = "secret";
 	public string Placement = "more_games";
@@ -30,27 +30,27 @@ public class PlayHavenNotifierBadge : MonoBehaviour {
 	
 	void OnGUI(){
 		if (mResponseData != null){
-			string badgeType, badgeValue;
+			string viewType, viewValue;
 			try{
-				badgeType = (string)mResponseData["type"];
+				viewType = (string)mResponseData["type"];
 			} catch (KeyNotFoundException e){
 				Debug.Log(e);
-				badgeType = null;
+				viewType = null;
 			}
 			
-			if (badgeType == "badge"){		
+			if (viewType == "badge"){		
 				try{
-					badgeValue = (string)mResponseData["value"];
+					viewValue = (string)mResponseData["value"];
 				} catch (KeyNotFoundException e){
 					Debug.Log(e);
-					badgeValue = null;
+					viewValue = null;
 				}
 				
-				if (badgeValue != null){
-					float lWidth = mGUIStyle.CalcSize(new GUIContent(badgeValue)).x + 8.0f;
+				if (viewValue != null){
+					float lWidth = mGUIStyle.CalcSize(new GUIContent(viewValue)).x + 8.0f;
 					if (lWidth < 35.0f) lWidth = 35.0f;
 					GUI.depth = 1;
-					GUI.Label(new Rect (xPos,yPos,lWidth, 35), badgeValue, mGUIStyle);
+					GUI.Label(new Rect (xPos,yPos,lWidth, 35), viewValue, mGUIStyle);
 				}
 			}
 		}

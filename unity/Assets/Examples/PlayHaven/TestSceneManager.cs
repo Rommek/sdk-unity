@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class TestSceneManager : MonoBehaviour {	
-	public PlayHavenNotifierBadge mBadge;
+	public PlayHavenNotifierView mNotifierView;
 	
 	void OnGUI(){
 		float yPos = 20.0f;
@@ -20,7 +20,7 @@ public class TestSceneManager : MonoBehaviour {
 			PlayHaven.ContentRequest request = new PlayHaven.ContentRequest("token","secret","more_games");
 			request.Send();
 			
-			if(mBadge != null) mBadge.Clear();
+			if(mNotifierView != null) mNotifierView.Clear();
 		}
 	}  	
 }
