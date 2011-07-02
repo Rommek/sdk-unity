@@ -1,0 +1,102 @@
+PlayHaven SDK for Unity3D
+=========================
+The PlayHaven Content SDK allows you to add dynamic content to your app. It is a flexible framework capable of delivering integrated experiences; including ads, special offers, announcements and other kinds of content which can be dynamically assigned to placements within your application.
+
+An API token and secret pair is required to use this SDK. These tokens identify your app to PlayHaven and prevent others from making requests to the API on your behalf. To obtain these credentials for your application please visit http://playhaven.com and log into the Developer Dashboard.
+
+Integration
+-----------
+    NOTE: For compatibility with XCode 4, we recommend a manual integration. We understand it's a less than ideal workflow, and we will implement automatic integration as soon as the required functionality is available in XCode 4.
+
+### Pre-Integration
+
+1. If you have cloned this repository from github, make sure to initalize and update submodules to get the latest compatible version of the PlayHaven SDK for iOS.
+
+	git submodule init
+	git submodule update
+
+1. Import PlayHavenSDK.unitypackage into your project. This will create the following folders in your project:
+	* _Plugins/PlayHaven_
+	* _Prefabs/PlayHaven_
+	* _Examples/PlayHaven_
+
+1. In your iOS player settings (accessible from File>Build Settings...) make sure the value of "Other Settings > Optimization > SDK Version is set to an appropriate device version. _Once you integrate a native code plugin like the PlayHaven SDK, you may not be able to build your app for the iOS Simulator_
+
+1. Build (but don't Build & Run) your app from the Build Settings... window. Open the resulting XCode project.
+
+### Post-XCode build
+
+    NOTE: You'll need to do the following the first time the project is built as well as each time you choose to "Replace" an existing XCode project from Unity.
+
+### Add CoreGraphics.framework
+1. From your project's Project Navigator (Command + Shift + J will reveal the Project Navigator if it is not visible) select the project (often named Unity-iPhone) to reveal the project settings pane.
+
+1. Select the Unity-iPhone target from the list of targets that appear.
+
+1. From the _Build Phases_ tab click on the triangle next to _Link Binary With Libraries_, which will reveal the a list of linked libraries.
+
+1. Click the _+_ icon at the bottom of the list. From the window the appears, select _CoreGraphics.framework_ and click _Add_. 
+
+### Add PlayHaven SDK files
+1. From your project's Project Navigator, right click on the _Classes_ folder and select _Add Files to "Unity-iPhone"..._.
+
+1. In the file dialog that appears, navigate to the sdk-ios directory inside the repository you have checked out and select the JSON and src directories. Leave the checkbox next to _Copy items into destination group's folder (if needed)_ unchecked. Leave the radio button next to _Create groups for any added folders_ selected. Ensure that the _Unity-iPhone_ target is selected. Click _Add_.
+
+### Add Unity Integration files
+
+1. From your project's Project Navigator, right click on the _Classes_ folder and select _Add Files to "Unity-iPhone"..._.
+
+1. In the file dialog that appears, navigate to the top level of the repository you have checked out and select both PHUnityIntegration.mm and PHUnityIntegration.h. Leave the checkbox next to _Copy items into destination group's folder (if needed)_ unchecked. Leave the radio button next to _Create groups for any added folders_ selected. Ensure that the _Unity-iPhone_ target is selected. Click _Add_.
+
+Making Requests and Displaying Content
+--------------------------------------
+### Integration
+In order to receive callbacks from native code, you will need to create an empty game object in your scene that contains the PlayHavenManager script (_Plugins/PlayHaven/PlayHavenManager_). For your convenience there is a prefab (_Prefabs/PlayHaven/PlayHavenManager_) that you may drop into your scene.
+
+### Recording game opens
+In order to better optimize your campaigns, it is necessary for your app to report all game opens. This will allow us to calculate impression rates based on all game opens. You do not have to register any event handlers for this request.
+
+    PlayHaven.OpenRequest request = new PlayHaven.OpenRequest("token","secret");
+    request.Send();
+
+### Requesting content for your placements
+You may request content for your app using your API token, secret, as well as a placement_id to identify the placement you are requesting content for. Our Unity integration will automatically pause and unpause Unity for you while content is active. You will need to implement two event handlers to handle successful dismisses or errors.
+
+    PlayHaven.ContentRequest request = new PlayHaven.ContentRequest("token","secret","more_games");
+    request.Send();
+
+**NOTE**: The only valid placement id is "more_games", using other values will cause an error.
+
+#### Content view dismissing
+The content has successfully dismissed and control is being returned to your app. This can happen as a result of the user clicking on the close button or clicking on a link that will open outside of the app. The game will have already been unpaused at this point.
+
+    request.OnDismiss += new PlayHaven.DismissHandler(this.HandleDismiss);
+    public void HandleDismiss(){
+        //Your dismiss implementation
+    }
+
+#### Content view failing to load
+If for any reason a content unit fails to load, the request will stop and the overlay view (if present) will be removed. The game will have already been unpaused at this point.
+
+    request.OnError += new PlayHaven.ErrorHandler(this.HandleError);
+    public void HandleError(JsonData errorData){
+      //Your dismiss implementation
+    }
+
+Displaying Notifier Views
+-------------------------
+### Integration
+The PlayHavenNotifierView script automatically retrieves placement metadata and displays a notification view if needed. You can integrate this into an empty object in your scene or use the readymade prefab (_Prefabs/PlayHaven/PlayHavenNotifierView_) to add a notification view to your scene. While inside the editor, the notification view will display a default notification view that will help you position the view on your screen.
+ 
+### Configuration
+The PlayHavenNotifierView script exposes the following editable properties when selected in the editor:
+
+* _Token_: Your publisher token
+* _Secret_: Your publisher secret
+* _Placement_: A placement id.
+* _XPos_, _YPos_: Screen position to display the notifier badge.
+
+**NOTE**: The only valid placement id is "more_games", using other values will cause an error.
+
+### Customization
+PlayHavenNotifierView also exposes a GUIStyle through the MGUIStyle property which is used to customize the appearance of the GUILabel instance that is created when notification view data is returned from the placement metadata call. To learn more on how to customize with GUIStyle, refer to the Unity documentation.
