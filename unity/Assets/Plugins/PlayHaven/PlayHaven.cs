@@ -91,9 +91,13 @@ public class PlayHaven : MonoBehaviour {
 		}
 		
 		[DllImport("__Internal")]
-		private static extern void _PlayHavenMetadataRequest(int hash, string token, string secret, string placement);
+		private static extern void _PlayHavenMetadataRequest(int hash, string token, string secret, string placement, bool showsOverlayImmediately);
 		
 		public void Send(){
+			Send(false);
+		}
+		
+		public void Send(bool showsOverlayImmediately){
 			Debug.Log("PlayHaven: Sending metadata request?");
 			if (Application.isEditor){
 				Hashtable result = new Hashtable();
@@ -108,7 +112,7 @@ public class PlayHaven : MonoBehaviour {
 				string jsonResult = JsonMapper.ToJson(result);
 				sManager.HandleNativeEvent(jsonResult);
 			} else {
-				_PlayHavenMetadataRequest(GetHashCode(), mToken, mSecret, mPlacement);
+				_PlayHavenMetadataRequest(GetHashCode(), mToken, mSecret, mPlacement, showsOverlayImmediately);
 			}
 		}
 		

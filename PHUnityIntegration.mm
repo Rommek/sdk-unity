@@ -105,12 +105,13 @@ extern "C" {
         [request send];
     }
     
-    void _PlayHavenContentRequest(const int hash, const char* token, const char* secret, const char* placement){
+    void _PlayHavenContentRequest(const int hash, const char* token, const char* secret, const char* placement, const bool showsOverlayImmediately){
         PHPublisherContentRequest *request = [PHPublisherContentRequest 
                                                requestForApp:CreateNSString(token)
                                                secret:CreateNSString(secret)
                                                placement:CreateNSString(placement) 
                                                delegate:[PHUnityIntegration sharedIntegration]];
+        request.showsOverlayImmediately = showsOverlayImmediately;
         request.hashCode = hash;
         [request send];
         
