@@ -67,6 +67,13 @@ You may request content for your app using your API token, secret, as well as a 
 
 **NOTE**: The only valid placement id is "more_games", using other values will cause an error.
 
+#### Controlling overlay behavior
+A transparent black overlay separates content units from your game. It will block touches from reaching your UI and provide a way for users to cancel out of a request if it is taking too long.
+
+By default, the overlay appears after the content request returns successfully. However, if you wish to show the overlay immediately after sending a request, you may add a parameter to request.Send(), like so:
+
+    request.Send(true); //shows overlay immediately after sending
+
 #### Content view dismissing
 The content has successfully dismissed and control is being returned to your app. This can happen as a result of the user clicking on the close button or clicking on a link that will open outside of the app. The game will have already been unpaused at this point.
 
