@@ -65,7 +65,7 @@ You may request content for your app using your API token, secret, as well as a 
     PlayHaven.ContentRequest request = new PlayHaven.ContentRequest("token","secret","more_games");
     request.Send();
 
-**NOTE**: The only valid placement id is "more_games", using other values will cause an error.
+*NOTE:* The placement\_id *"more_games"* is available to all games in our system. You may set up additional placement_ids through the PlayHaven Developer Dashboard.
 
 #### Controlling overlay behavior
 A transparent black overlay separates content units from your game. It will block touches from reaching your UI and provide a way for users to cancel out of a request if it is taking too long.
@@ -114,7 +114,7 @@ The PlayHavenNotifierView script exposes the following editable properties when 
 * _Placement_: A placement id.
 * _XPos_, _YPos_: Screen position to display the notifier badge.
 
-**NOTE**: The only valid placement id is "more_games", using other values will cause an error.
+*NOTE:* The placement\_id *"more_games"* is available to all games in our system. You may set up additional placement_ids through the PlayHaven Developer Dashboard.
 
 ### Customization
 PlayHavenNotifierView also exposes a GUIStyle through the MGUIStyle property which is used to customize the appearance of the GUILabel instance that is created when notification view data is returned from the placement metadata call. To learn more on how to customize with GUIStyle, refer to the Unity documentation.
