@@ -1,5 +1,8 @@
 XCode
+
+#removing unity Library stuff that makes it difficult to merge
 unity/Temp
+unity/Library
 
 #OS Generated Files
 .DS_Store?
