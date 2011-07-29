@@ -87,8 +87,19 @@ If for any reason a content unit fails to load, the request will stop and the ov
 
     request.OnError += new PlayHaven.ErrorHandler(this.HandleError);
     public void HandleError(JsonData errorData){
-      //Your dismiss implementation
+    	//Your dismiss implementation
     }
+    
+#### Content view unlocks a reward
+At any point while a content unit is being displayed, one or more rewards may be unlocked. Information about these rewards is passed back to your game through the OnReward event.
+
+	request.OnReward += new PlayHaven.RewardHandler(this.HandleReward);
+	public void HandleReward(JsonData rewardData){
+		rewardData["name"];     //name of the reward configured on the dashboard
+		rewardData["quantity"]; //if there is a quantity associated, it will be an integer value
+		rewardData["receipt"];  //unique identifier used to identify duplicate reward unlocks
+	}
+
 
 Displaying Notifier Views
 -------------------------
