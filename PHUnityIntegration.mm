@@ -73,6 +73,16 @@ static PHUnityIntegration *sharedIntegration;
     UnitySendMessage("PlayHavenManager", "HandleNativeEvent", [messageJSON cStringUsingEncoding:NSUTF8StringEncoding]);  
 }
 
+-(void)request:(PHPublisherContentRequest *)request unlockedReward:(PHReward *)reward{
+	NSArray *keys = [NSArray arrayWithObjects:@"name",@"quantity",@"receipt"];
+	NSDictionary *rewardRepresentation = [reward dictionaryWithValuesForKeys:keys];
+	NSDictionary *messageDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+								   [NSNumber numberWithInt:request.hashCode],@"hash",
+								   @"reward", @"name",
+								   rewardRepresentation,@"data", 
+								   nil];
+    UnitySendMessage("PlayHavenManager", "HandleNativeEvent", [messageJSON cStringUsingEncoding:NSUTF8StringEncoding]); 
+}
                 
 
 @end

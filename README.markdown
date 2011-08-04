@@ -65,7 +65,7 @@ You may request content for your app using your API token, secret, as well as a 
     PlayHaven.ContentRequest request = new PlayHaven.ContentRequest("token","secret","more_games");
     request.Send();
 
-**NOTE**: The only valid placement id is "more_games", using other values will cause an error.
+*NOTE:* You may set up placement_ids through the PlayHaven Developer Dashboard.
 
 #### Controlling overlay behavior
 A transparent black overlay separates content units from your game. It will block touches from reaching your UI and provide a way for users to cancel out of a request if it is taking too long.
@@ -87,8 +87,19 @@ If for any reason a content unit fails to load, the request will stop and the ov
 
     request.OnError += new PlayHaven.ErrorHandler(this.HandleError);
     public void HandleError(JsonData errorData){
-      //Your dismiss implementation
+    	//Your dismiss implementation
     }
+    
+#### Content view unlocks a reward
+At any point while a content unit is being displayed, one or more rewards may be unlocked. Information about these rewards is passed back to your game through the OnReward event.
+
+	request.OnReward += new PlayHaven.RewardHandler(this.HandleReward);
+	public void HandleReward(JsonData rewardData){
+		rewardData["name"];     //name of the reward configured on the dashboard
+		rewardData["quantity"]; //if there is a quantity associated, it will be an integer value
+		rewardData["receipt"];  //unique identifier used to identify duplicate reward unlocks
+	}
+
 
 Displaying Notifier Views
 -------------------------
@@ -103,7 +114,7 @@ The PlayHavenNotifierView script exposes the following editable properties when 
 * _Placement_: A placement id.
 * _XPos_, _YPos_: Screen position to display the notifier badge.
 
-**NOTE**: The only valid placement id is "more_games", using other values will cause an error.
+*NOTE:* You may set up placement_ids through the PlayHaven Developer Dashboard.
 
 ### Customization
 PlayHavenNotifierView also exposes a GUIStyle through the MGUIStyle property which is used to customize the appearance of the GUILabel instance that is created when notification view data is returned from the placement metadata call. To learn more on how to customize with GUIStyle, refer to the Unity documentation.

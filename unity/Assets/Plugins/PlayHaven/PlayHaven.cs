@@ -25,6 +25,7 @@ public class PlayHaven : MonoBehaviour {
 	// Event Handlers
 	public delegate void SuccessHandler(JsonData responseData);
 	public delegate void ErrorHandler(JsonData errorData);
+	public delegate void RewardHandler(JsonData rewardData);
 	public delegate void DismissHandler();
 	
 	//Interface
@@ -164,9 +165,13 @@ public class PlayHaven : MonoBehaviour {
 		// Events
 		public event DismissHandler OnDismiss = delegate {};  
 	    public event ErrorHandler OnError = delegate {};
+	    public event RewardHandler OnReward = delegate {};
 	    
 	    public void TriggerEvent(string eventName, JsonData eventData){
-	    	if (String.Compare(eventName,"dismiss") == 0){
+	    	if (String.Compare(eventName,"reward") == 0){
+	    		Debug.Log("PlayHaven: Reward unlocked");
+	    		OnReward(eventData);
+	    	} else if (String.Compare(eventName,"dismiss") == 0){
 	    		Debug.Log("PlayHaven: Content was dismissed!");
 	    		OnDismiss();
 	    	} else if (String.Compare(eventName, "error") == 0){
