@@ -33,7 +33,7 @@ static PHUnityIntegration *sharedIntegration;
     NSDictionary *messageDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                        [NSNumber numberWithInt:request.hashCode],@"hash",
                                        @"success", @"name",
-                                       responseData,@"data", 
+                                       (!!responseData)? responseData: [NSDictionary dictionary],@"data", 
                                        nil];
     NSString *messageJSON = [messageDictionary JSONRepresentation];
     UnitySendMessage("PlayHavenManager", "HandleNativeEvent", [messageJSON cStringUsingEncoding:NSUTF8StringEncoding]);
