@@ -36,7 +36,7 @@ static PHUnityIntegration *sharedIntegration;
                                        responseData,@"data", 
                                        nil];
     NSString *messageJSON = [messageDictionary JSONRepresentation];
-    UnitySendMessage("PlayHavenManager", "HandleNativeMethod", [messageJSON cStringUsingEncoding:NSUTF8StringEncoding]);
+    UnitySendMessage("PlayHavenManager", "HandleNativeEvent", [messageJSON cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 -(void)request:(PHAPIRequest *)request didFailWithError:(NSError *)error{
