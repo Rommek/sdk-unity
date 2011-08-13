@@ -40,7 +40,7 @@ Integration
 ### Add PlayHaven SDK files
 1. From your project's Project Navigator, right click on the _Classes_ folder and select _Add Files to "Unity-iPhone"..._.
 
-1. In the file dialog that appears, navigate to the sdk-ios directory inside the repository you have checked out and select the JSON and src directories. Leave the checkbox next to _Copy items into destination group's folder (if needed)_ unchecked. Leave the radio button next to _Create groups for any added folders_ selected. Ensure that the _Unity-iPhone_ target is selected. Click _Add_.
+1. In the file dialog that appears, navigate to the sdk-ios directory inside the repository you have checked out and select the JSON and src directories as well as PlayHaven.bundle. Leave the checkbox next to _Copy items into destination group's folder (if needed)_ unchecked. Leave the radio button next to _Create groups for any added folders_ selected. Ensure that the _Unity-iPhone_ target is selected. Click _Add_.
 
 ### Add Unity Integration files
 
