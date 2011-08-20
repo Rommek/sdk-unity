@@ -1,8 +1,8 @@
 PlayHaven SDK for Unity3D
 =========================
-The PlayHaven Content SDK allows you to add dynamic content to your app. It is a flexible framework capable of delivering integrated experiences; including ads, special offers, announcements and other kinds of content which can be dynamically assigned to placements within your application.
-
-An API token and secret pair is required to use this SDK. These tokens identify your app to PlayHaven and prevent others from making requests to the API on your behalf. To obtain these credentials for your application please visit http://playhaven.com and log into the Developer Dashboard.
+PlayHaven is a real-time mobile game marketing platform to help you take control of the business of your games.
+Acquire, retain, re-engage, and monetize your players with the help of PlayHaven's powerful marketing platform. Integrate once and embrace the flexibility of the web as you build, schedule, deploy, and analyze your in-game promotions and monetization in real-time through PlayHaven's easy-to-use, web-based dashboard.
+An API token and secret is required to use this SDK. These tokens uniquely identify your app to PlayHaven and prevent others from making requests to the API on your behalf. To get a token and secret, please visit the PlayHaven developer dashboard at https://dashboard.playhaven.com
 
 Integration
 -----------
