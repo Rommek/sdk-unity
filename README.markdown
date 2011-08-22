@@ -99,7 +99,6 @@ You may request content for your app using your API token, secret, as well as a 
 
 #### Controlling overlay behavior
 A transparent black overlay separates content units from your game. It will block touches from reaching your UI and provide a way for users to cancel out of a request if it is taking too long.
-
 By default, the overlay appears after the content request returns successfully. However, if you wish to show the overlay immediately after sending a request, you may add a parameter to request.Send(), like so:
 
     request.Send(true); //shows overlay immediately after sending
@@ -121,7 +120,7 @@ If for any reason a content unit fails to load, the request will stop and the ov
     }
     
 #### Content view unlocks a reward
-At any point while a content unit is being displayed, one or more rewards may be unlocked. Information about these rewards is passed back to your game through the OnReward event.
+PlayHaven allows you to reward users with virtual currency, in-game items, or any other content within your game. Information about these rewards is passed back to your game through the OnReward event.
 
 	request.OnReward += new PlayHaven.RewardHandler(this.HandleReward);
 	public void HandleReward(JsonData rewardData){
