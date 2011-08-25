@@ -10,10 +10,12 @@ Integration
 
 ### Pre-Integration
 
-1. If you have cloned this repository from github, make sure to initalize and update submodules to get the latest compatible version of the PlayHaven SDK for iOS.
+1. This SDK is built on our iPhone SDK, if you cloned this repository from github, make sure to initalize and update submodules to get the latest compatible version of the PlayHaven SDK for iOS. From the directory you cloned:
 
 	git submodule init
 	git submodule update
+
+Otherwise, if you downloaded this repository as a .zip file from github, you may also need to download sdk-ios version 1.0.2. It's available at https://github.com/playhaven/sdk-ios/zipball/1.0.2
 
 1. Import PlayHavenSDK.unitypackage into your project. This will create the following folders in your project:
 	* _Plugins/PlayHaven_
