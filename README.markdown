@@ -15,7 +15,7 @@ Integration
 	git submodule init
 	git submodule update
 
-Otherwise, if you downloaded this repository as a .zip file from github, you may also need to download sdk-ios version 1.3.1. It's available at https://github.com/playhaven/sdk-ios/zipball/1.3.1
+Otherwise, if you downloaded this repository as a .zip file from github, you may also need to download sdk-ios version 1.3.2. It's available at https://github.com/playhaven/sdk-ios/zipball/1.3.2
 
 1. Import PlayHavenSDK.unitypackage into your project. This will create the following folders in your project:
 	* _Plugins/PlayHaven_
