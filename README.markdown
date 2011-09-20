@@ -19,7 +19,6 @@ Otherwise, if you downloaded this repository as a .zip file from github, you may
 
 1. Import PlayHavenSDK.unitypackage into your project. This will create the following folders in your project:
 	* _Plugins/PlayHaven_
-	* _Prefabs/PlayHaven_
 	* _Examples/PlayHaven_
 
 1. In your iOS player settings (accessible from File>Build Settings...) make sure the value of "Other Settings > Optimization > SDK Version is set to an appropriate device version. _Once you integrate a native code plugin like the PlayHaven SDK, you may not be able to build your app for the iOS Simulator_
@@ -76,15 +75,14 @@ Inside your button's event handler, use the following code to request the pre-co
 Add OnDismiss and OnError event handlers to the request instance if you would like to know when the Cross-Promotion Widget has loaded or dismissed. See "Requesting content for your placements" for more information about these delegate methods as well as other things you can do with PlayHaven.ContentRequest.
 
 ### Add a Notification View (Notifier Badge)
-Adding a notification view to your "More Games" button will greatly increase the number of Cross-Promotion Widget opens for your game, by up to 300%. The easiest way to create a Notification view is using the readymade prefab. (_Prefabs/PlayHaven/PlayHavenNotifierView_)
+Adding a notification view to your "More Games" button will greatly increase the number of Cross-Promotion Widget opens for your game, by up to 300%. Add the PlayHavenNotifierView script (_Plugins/PlayHaven/PlayHavenNotifierView_) to an object in your scene.
 
-After adding the prefab to the scene, set the editable properties _Token_ and _Secret_ to your game's token and secret. Set _Placement_ to "more\_games". Set _XPos_ and _YPos_ to the screen coordinates you would like to use as the notifier's center point. See "Displaying Notification Views" for more information about customizing the presentation of your PlayHavenNotifierView.
+You may set the editable properties _Token_ and _Secret_ to your game's token and secret. Set _Placement_ to "more\_games". Set _XPos_ and _YPos_ to the screen coordinates you would like to use as the notifier's center point. See "Displaying Notification Views" for more information about customizing the presentation of your PlayHavenNotifierView.
 
 Making Requests and Displaying Content
 --------------------------------------
 ### Integration
-In order to receive callbacks from native code, you will need to create an empty game object in your scene that contains the PlayHavenManager script (_Plugins/PlayHaven/PlayHavenManager_). For your convenience there is a prefab (_Prefabs/PlayHaven/PlayHavenManager_) that you may drop into your scene.
-
+In order to receive callbacks from native code, you will need to create an empty game object in your scene that contains the PlayHavenManager script (_Plugins/PlayHaven/PlayHavenManager_).
 ### Recording game opens
 In order to better optimize your campaigns, it is necessary for your app to report all game opens. This will allow us to calculate impression rates based on all game opens. You do not have to register any event handlers for this request.
 
@@ -135,7 +133,7 @@ PlayHaven allows you to reward users with virtual currency, in-game items, or an
 Displaying Notifier Views
 -------------------------
 ### Integration
-The PlayHavenNotifierView script automatically retrieves placement metadata and displays a notification view if needed. You can integrate this into an empty object in your scene or use the readymade prefab (_Prefabs/PlayHaven/PlayHavenNotifierView_) to add a notification view to your scene. While inside the editor, the notification view will display a default notification view that will help you position the view on your screen.
+The PlayHavenNotifierView script automatically retrieves placement metadata and displays a notification view if needed. Add the PlayHavenNotifierView script (_Plugins/PlayHaven/PlayHavenNotifierView_) to an object in your scene. While inside the editor, the notification view will display a default notification view that will help you position the view on your screen.
  
 ### Configuration
 The PlayHavenNotifierView script exposes the following editable properties when selected in the editor:

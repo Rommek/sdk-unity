@@ -21,7 +21,12 @@ public class PlayHavenNotifierView : MonoBehaviour {
 	}
 	
 	public void HandleSuccess(JsonData responseData){
-		mResponseData = responseData;
+		try{
+			mResponseData = responseData["notification"];
+		} catch (KeyNotFoundException e){
+			Debug.Log(e);
+			mResponseData = null;
+		}
 	}
 	
 	public void Clear(){

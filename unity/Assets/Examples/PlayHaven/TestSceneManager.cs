@@ -12,12 +12,12 @@ public class TestSceneManager : MonoBehaviour {
 		GUI.depth = 2;
 		
 		if( GUI.Button( new Rect( xPos, yPos, width, 40 ), "Open" ) ){
-			PlayHaven.OpenRequest request = new PlayHaven.OpenRequest("token","secret");
+			PlayHaven.OpenRequest request = new PlayHaven.OpenRequest("zombie1","haven1");
 			request.Send();
 		}
 				
 		if( GUI.Button( new Rect( xPos, yPos += 50, width, 40 ), "Content" ) ){
-			PlayHaven.ContentRequest request = new PlayHaven.ContentRequest("token","secret","more_games");
+			PlayHaven.ContentRequest request = new PlayHaven.ContentRequest("zombie1","haven1","more_games");
 			request.Send();
 			
 			if(mNotifierView != null) mNotifierView.Clear();

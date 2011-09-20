@@ -104,7 +104,10 @@ public class PlayHaven : MonoBehaviour {
 				Hashtable dataTable = new Hashtable();
 				dataTable["type"] = "badge";
 				dataTable["value"] = "1";
-				result["data"] = dataTable;
+				
+				Hashtable notificationTable = new Hashtable();
+				notificationTable["notification"] = dataTable;
+				result["data"] = notificationTable;
 				
 				string jsonResult = JsonMapper.ToJson(result);
 				sManager.HandleNativeEvent(jsonResult);

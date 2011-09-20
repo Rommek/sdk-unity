@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "PlayHavenSDK.h"
-
-@interface PHUnityIntegration : NSObject<PHAPIRequestDelegate, PHPublisherContentRequestDelegate>
+@class SBJsonWriter;
+@interface PHUnityIntegration : NSObject<PHAPIRequestDelegate, PHPublisherContentRequestDelegate>{
+  SBJsonWriter *_writer;
+}
 +(PHUnityIntegration *)sharedIntegration;
+
+@property (nonatomic, readonly) SBJsonWriter *writer;
 @end

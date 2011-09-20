@@ -28,6 +28,14 @@ static PHUnityIntegration *sharedIntegration;
     return sharedIntegration;
 }
 
+-(SBJsonWriter *)writer{
+  if (_writer == nil) {
+    _writer = [SBJsonWriter new];
+  }
+  
+  return _writer;
+}
+
 -(void)request:(PHAPIRequest *)request didSucceedWithResponse:(NSDictionary *)responseData{
     UnityPause(false);
     NSDictionary *messageDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -35,7 +43,7 @@ static PHUnityIntegration *sharedIntegration;
                                        @"success", @"name",
                                        (!!responseData)? responseData: [NSDictionary dictionary],@"data", 
                                        nil];
-    NSString *messageJSON = [messageDictionary JSONRepresentation];
+    NSString *messageJSON = [self.writer stringWithObject:messageDictionary];
     UnitySendMessage("PlayHavenManager", "HandleNativeEvent", [messageJSON cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
@@ -46,7 +54,7 @@ static PHUnityIntegration *sharedIntegration;
                                        @"error", @"name",
                                        [NSDictionary dictionary],@"data", 
                                        nil];
-    NSString *messageJSON = [messageDictionary JSONRepresentation];
+    NSString *messageJSON = [self.writer stringWithObject:messageDictionary];
     UnitySendMessage("PlayHavenManager", "HandleNativeEvent", [messageJSON cStringUsingEncoding:NSUTF8StringEncoding]);
     
 }
@@ -58,7 +66,7 @@ static PHUnityIntegration *sharedIntegration;
                                        @"error", @"name",
                                        [NSDictionary dictionary],@"data", 
                                        nil];
-    NSString *messageJSON = [messageDictionary JSONRepresentation];
+    NSString *messageJSON = [self.writer stringWithObject:messageDictionary];
     UnitySendMessage("PlayHavenManager", "HandleNativeEvent", [messageJSON cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
@@ -69,7 +77,7 @@ static PHUnityIntegration *sharedIntegration;
                                        @"dismiss", @"name",
                                        [NSDictionary dictionary],@"data", 
                                        nil];
-    NSString *messageJSON = [messageDictionary JSONRepresentation];
+    NSString *messageJSON = [self.writer stringWithObject:messageDictionary];
     UnitySendMessage("PlayHavenManager", "HandleNativeEvent", [messageJSON cStringUsingEncoding:NSUTF8StringEncoding]);  
 }
 
@@ -81,7 +89,7 @@ static PHUnityIntegration *sharedIntegration;
 								   @"reward", @"name",
 								   rewardRepresentation,@"data", 
 								   nil];
-  NSString *messageJSON = [messageDictionary JSONRepresentation];
+  NSString *messageJSON = [self.writer stringWithObject:messageDictionary];
   UnitySendMessage("PlayHavenManager", "HandleNativeEvent", [messageJSON cStringUsingEncoding:NSUTF8StringEncoding]); 
 }
                 
