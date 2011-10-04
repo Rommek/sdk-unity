@@ -60,7 +60,7 @@ Adding a Cross-Promotion Widget to Your Game
 Each game is pre-configured for our Cross-Promotion Widget, which will give your game the ability to deliver quality game recommendations to your users. To integrate the Cross-Promotion Widget, you'll need to do the following:
 
 ### Record game opens
-In order to better optimize your content units, it is necessary for your app to report all game opens. This allows you to measure the click-through rate of your Cross-Promotion Widget to help optimize the performance of your implementation. This request is asynchronous and may run in the background while your game is loading.
+In order to better optimize your content units, it is necessary for your app to report each time your application comes to the foreground. PlayHaven uses these events to measure the click-through rate of your Cross-Promotion Widget to help optimize the performance of your implementation. This request is asynchronous and may run in the background while your game is loading.
 
 Inside of a script that is run when your game is launched, use the following code to record a game open:
 
@@ -90,7 +90,7 @@ Making Requests and Displaying Content
 ### Integration
 In order to receive callbacks from native code, you will need to create an empty game object in your scene that contains the PlayHavenManager script (_Plugins/PlayHaven/PlayHavenManager_).
 ### Recording game opens
-In order to better optimize your campaigns, it is necessary for your app to report all game opens. This will allow us to calculate impression rates based on all game opens. You do not have to register any event handlers for this request.
+In order to better optimize your campaigns, it is necessary for your app to report all game opens, meaning each time your app becomes active, whether because of a launch or an application switch. This will allow us to calculate impression rates based on all game opens. You do not have to register any event handlers for this request.
 
     PlayHaven.OpenRequest request = new PlayHaven.OpenRequest("token","secret");
     request.Send();
