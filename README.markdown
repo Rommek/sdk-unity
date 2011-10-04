@@ -4,6 +4,12 @@ PlayHaven is a real-time mobile game marketing platform to help you take control
 Acquire, retain, re-engage, and monetize your players with the help of PlayHaven's powerful marketing platform. Integrate once and embrace the flexibility of the web as you build, schedule, deploy, and analyze your in-game promotions and monetization in real-time through PlayHaven's easy-to-use, web-based dashboard.
 An API token and secret is required to use this SDK. These tokens uniquely identify your app to PlayHaven and prevent others from making requests to the API on your behalf. To get a token and secret, please visit the PlayHaven developer dashboard at https://dashboard.playhaven.com
 
+What's New in 1.3.6
+==========================
+* Successful requests for placements that have no content assigned or available will no longer trigger an error response. These requests will instead will indicate in your console logs that they will dismiss because there is no content to show and then dismiss using the appropriate delegate methods
+* Content units are now displayed in their own UIWindow instance, and will now appear below any alert views (UIAlertView, Game Center alerts, etc.).
+* Developers are now recommended to send open requests each time their app becomes active. (This means each launch and every time the app is foregrounded on devices that support multitasking.) See "Record game opens" under "Adding a Cross-Promotion Widget to Your Game" for more information.
+
 Integration
 -----------
     NOTE: For compatibility with XCode 4, we recommend a manual integration. We understand it's a less than ideal workflow, and we will implement automatic integration as soon as the required functionality is available in XCode 4.
@@ -15,7 +21,7 @@ Integration
 	git submodule init
 	git submodule update
 
-Otherwise, if you downloaded this repository as a .zip file from github, you may also need to download sdk-ios version 1.3.2. It's available at https://github.com/playhaven/sdk-ios/zipball/1.3.2
+Otherwise, if you downloaded this repository as a .zip file from github, you may also need to download sdk-ios version 1.3.6. It's available at https://github.com/playhaven/sdk-ios/zipball/1.3.6
 
 1. Import PlayHavenSDK.unitypackage into your project. This will create the following folders in your project:
 	* _Plugins/PlayHaven_

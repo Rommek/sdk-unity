@@ -3,11 +3,15 @@ XCode
 #removing unity Library stuff that makes it difficult to merge
 unity/Temp
 unity/Library
+unity/Assembly*
+unity/*.sln
+unity/*.userprefs
+
 
 #OS Generated Files
-.DS_Store?
+.DS_Store
 ehthumbs.db
-Icon?
+Icon
 Thumbs.db
 
 
