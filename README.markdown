@@ -55,6 +55,10 @@ Otherwise, if you downloaded this repository as a .zip file from github, you may
 
 1. In the file dialog that appears, navigate to the top level of the repository you have checked out and select both PHUnityIntegration.mm and PHUnityIntegration.h. Leave the checkbox next to _Copy items into destination group's folder (if needed)_ unchecked. Leave the radio button next to _Create groups for any added folders_ selected. Ensure that the _Unity-iPhone_ target is selected. Click _Add_.
 
+TestScene
+---------
+An example scene is included in PlayHavenSDK.unitypackage that contains a sample implementation of the SDK. If you would like to try this scene on your phone you will need to edit the TestSceneManager script as well as the PHNotificationView instance in this scene to use your publisher token and secret.
+
 Adding a Cross-Promotion Widget to Your Game
 --------------------------------------------
 Each game is pre-configured for our Cross-Promotion Widget, which will give your game the ability to deliver quality game recommendations to your users. To integrate the Cross-Promotion Widget, you'll need to do the following:
