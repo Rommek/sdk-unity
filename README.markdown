@@ -21,7 +21,7 @@ Integration
 	git submodule init
 	git submodule update
 
-Otherwise, if you downloaded this repository as a .zip file from github, you may also need to download sdk-ios version 1.3.8. It's available at https://github.com/playhaven/sdk-ios/zipball/1.3.8
+Otherwise, if you downloaded this repository as a .zip file from github, you may also need to download sdk-ios version 1.3.9. It's available at https://github.com/playhaven/sdk-ios/zipball/1.3.9
 
 1. Import PlayHavenSDK.unitypackage into your project. This will create the following folders in your project:
 	* _Plugins/PlayHaven_
@@ -34,6 +34,15 @@ Otherwise, if you downloaded this repository as a .zip file from github, you may
 ### Post-XCode build
 
     NOTE: You'll need to do the following the first time the project is built as well as each time you choose to "Replace" an existing XCode project from Unity.
+
+### Add SystemConfiguration.framework
+1. From your project's Project Navigator (Command + Shift + J will reveal the Project Navigator if it is not visible) select the project (often named Unity-iPhone) to reveal the project settings pane.
+
+1. Select the Unity-iPhone target from the list of targets that appear.
+
+1. From the _Build Phases_ tab click on the triangle next to _Link Binary With Libraries_, which will reveal the a list of linked libraries.
+
+1. Click the _+_ icon at the bottom of the list. From the window the appears, select _SystemConfiguration.framework_ and click _Add_. 
 
 ### Add PlayHaven SDK files
 1. From your project's Project Navigator, right click on the _Classes_ folder and select _Add Files to "Unity-iPhone"..._.
