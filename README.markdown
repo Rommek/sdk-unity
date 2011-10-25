@@ -4,6 +4,12 @@ PlayHaven is a real-time mobile game marketing platform to help you take control
 Acquire, retain, re-engage, and monetize your players with the help of PlayHaven's powerful marketing platform. Integrate once and embrace the flexibility of the web as you build, schedule, deploy, and analyze your in-game promotions and monetization in real-time through PlayHaven's easy-to-use, web-based dashboard.
 An API token and secret is required to use this SDK. These tokens uniquely identify your app to PlayHaven and prevent others from making requests to the API on your behalf. To get a token and secret, please visit the PlayHaven developer dashboard at https://dashboard.playhaven.com
 
+What's New in 1.3.6
+==========================
+* Successful requests for placements that have no content assigned or available will no longer trigger an error response. These requests will instead will indicate in your console logs that they will dismiss because there is no content to show and then dismiss using the appropriate delegate methods
+* Content units are now displayed in their own UIWindow instance, and will now appear below any alert views (UIAlertView, Game Center alerts, etc.).
+* Developers are now recommended to send open requests each time their app becomes active. (This means each launch and every time the app is foregrounded on devices that support multitasking.) See "Record game opens" under "Adding a Cross-Promotion Widget to Your Game" for more information.
+
 Integration
 -----------
     NOTE: For compatibility with XCode 4, we recommend a manual integration. We understand it's a less than ideal workflow, and we will implement automatic integration as soon as the required functionality is available in XCode 4.
@@ -40,12 +46,16 @@ Otherwise, if you downloaded this repository as a .zip file from github, you may
 
 1. In the file dialog that appears, navigate to the top level of the repository you have checked out and select both PHUnityIntegration.mm and PHUnityIntegration.h. Leave the checkbox next to _Copy items into destination group's folder (if needed)_ unchecked. Leave the radio button next to _Create groups for any added folders_ selected. Ensure that the _Unity-iPhone_ target is selected. Click _Add_.
 
+TestScene
+---------
+An example scene is included in PlayHavenSDK.unitypackage that contains a sample implementation of the SDK. If you would like to try this scene on your phone you will need to edit the TestSceneManager script as well as the PHNotificationView instance in this scene to use your publisher token and secret.
+
 Adding a Cross-Promotion Widget to Your Game
 --------------------------------------------
 Each game is pre-configured for our Cross-Promotion Widget, which will give your game the ability to deliver quality game recommendations to your users. To integrate the Cross-Promotion Widget, you'll need to do the following:
 
 ### Record game opens
-In order to better optimize your content units, it is necessary for your app to report all game opens. This allows you to measure the click-through rate of your Cross-Promotion Widget to help optimize the performance of your implementation. This request is asynchronous and may run in the background while your game is loading.
+In order to better optimize your content units, it is necessary for your app to report each time your application comes to the foreground. PlayHaven uses these events to measure the click-through rate of your Cross-Promotion Widget to help optimize the performance of your implementation. This request is asynchronous and may run in the background while your game is loading.
 
 Inside of a script that is run when your game is launched, use the following code to record a game open:
 
@@ -75,7 +85,7 @@ Making Requests and Displaying Content
 ### Integration
 In order to receive callbacks from native code, you will need to create an empty game object in your scene that contains the PlayHavenManager script (_Plugins/PlayHaven/PlayHavenManager_).
 ### Recording game opens
-In order to better optimize your campaigns, it is necessary for your app to report all game opens. This will allow us to calculate impression rates based on all game opens. You do not have to register any event handlers for this request.
+In order to better optimize your campaigns, it is necessary for your app to report all game opens, meaning each time your app becomes active, whether because of a launch or an application switch. This will allow us to calculate impression rates based on all game opens. You do not have to register any event handlers for this request.
 
     PlayHaven.OpenRequest request = new PlayHaven.OpenRequest("token","secret");
     request.Send();

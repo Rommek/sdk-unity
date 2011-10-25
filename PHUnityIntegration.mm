@@ -59,17 +59,6 @@ static PHUnityIntegration *sharedIntegration;
     
 }
 
--(void)request:(PHPublisherContentRequest *)request contentDidFailWithError:(NSError *)error{
-    UnityPause(false);
-    NSDictionary *messageDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                       [NSNumber numberWithInt:request.hashCode],@"hash",
-                                       @"error", @"name",
-                                       [NSDictionary dictionary],@"data", 
-                                       nil];
-    NSString *messageJSON = [self.writer stringWithObject:messageDictionary];
-    UnitySendMessage("PlayHavenManager", "HandleNativeEvent", [messageJSON cStringUsingEncoding:NSUTF8StringEncoding]);
-}
-
 -(void)requestContentDidDismiss:(PHPublisherContentRequest *)request{
     UnityPause(false);
     NSDictionary *messageDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
