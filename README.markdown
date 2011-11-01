@@ -4,11 +4,20 @@ PlayHaven is a real-time mobile game marketing platform to help you take control
 Acquire, retain, re-engage, and monetize your players with the help of PlayHaven's powerful marketing platform. Integrate once and embrace the flexibility of the web as you build, schedule, deploy, and analyze your in-game promotions and monetization in real-time through PlayHaven's easy-to-use, web-based dashboard.
 An API token and secret is required to use this SDK. These tokens uniquely identify your app to PlayHaven and prevent others from making requests to the API on your behalf. To get a token and secret, please visit the PlayHaven developer dashboard at https://dashboard.playhaven.com
 
-What's New in 1.3.6
-==========================
-* Successful requests for placements that have no content assigned or available will no longer trigger an error response. These requests will instead will indicate in your console logs that they will dismiss because there is no content to show and then dismiss using the appropriate delegate methods
-* Content units are now displayed in their own UIWindow instance, and will now appear below any alert views (UIAlertView, Game Center alerts, etc.).
-* Developers are now recommended to send open requests each time their app becomes active. (This means each launch and every time the app is foregrounded on devices that support multitasking.) See "Record game opens" under "Adding a Cross-Promotion Widget to Your Game" for more information.
+What's new in 1.3.9
+===================
+* The SDK now reports whether a user is on a cellular or wifi data connection. This will allow the API to tailor content units to available bandwidth. This feature requires *SystemConfiguration.framework* to be linked to your build targets. See instructions for linking this framework below.
+* Content unit open animations should now be much smoother.
+
+1.3.8
+=====
+* Removed unused PHURLLoaderView classes.
+* Prevents crashes caused by interrupting a PHURLLoader open operation (sometimes occurs during app store opens)
+
+1.3.7
+=====
+* API and content template requests now have a 10 second timeout, this should keep your users from getting stuck waiting for a request if they are experiencing network issues
+* The native close button should appear more reliably before content units are displayed
 
 Integration
 -----------
