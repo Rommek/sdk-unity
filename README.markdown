@@ -44,6 +44,20 @@ Otherwise, if you downloaded this repository as a .zip file from github, you may
 
     NOTE: You'll need to do the following the first time the project is built as well as each time you choose to "Replace" an existing XCode project from Unity.
 
+### Add SystemConfiguration.framework (if not already present in your project)
+1. From your project's Project Navigator (Command + Shift + J will reveal the Project Navigator if it is not visible) select the project (often named Unity-iPhone) to reveal the project settings pane.
+
+1. Select the Unity-iPhone target from the list of targets that appear.
+
+1. From the _Build Phases_ tab click on the triangle next to _Link Binary With Libraries_, which will reveal the a list of linked libraries.
+
+1. Click the _+_ icon at the bottom of the list. From the window the appears, select _SystemConfiguration.framework_ and click _Add_. 
+
+### Add PlayHaven SDK files
+1. From your project's Project Navigator, right click on the _Classes_ folder and select _Add Files to "Unity-iPhone"..._.
+
+1. In the file dialog that appears, navigate to the sdk-ios directory inside the repository you have checked out and select the JSON and src directories as well as PlayHaven.bundle. Leave the checkbox next to _Copy items into destination group's folder (if needed)_ unchecked. Leave the radio button next to _Create groups for any added folders_ selected. Ensure that the _Unity-iPhone_ target is selected. Click _Add_.
+
 ### Add Unity Integration files
 
 1. From your project's Project Navigator, right click on the _Classes_ folder and select _Add Files to "Unity-iPhone"..._.
