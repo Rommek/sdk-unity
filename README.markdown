@@ -6,4 +6,3 @@ An API token and secret is required to use this SDK. These tokens uniquely ident
 
 Our Unity3D SDK is now entirely self contained inside of this .unitypackage file. It contains all of the iOS and Unity3d code that you will need to integrate PlayHaven into your Unity3D project as well as documentation. If you've been using the old Unity3D sdk-unity project, please update now.
 
-If you encounter difficulties with app approval regarding UDID method calls please switch to playhaven-sdk-unity-1.8.2-ios-noudid.unitypackage.
