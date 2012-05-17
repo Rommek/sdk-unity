@@ -1,4 +1,4 @@
-PlayHaven SDK for Unity3D version 1.10.4
+PlayHaven SDK for Unity3D version 1.10.5
 ========================================
 
 PlayHaven is a real-time mobile game marketing platform to help you take control of the business of your games.
